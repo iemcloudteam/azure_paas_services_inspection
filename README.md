@@ -9,3 +9,5 @@ A DNS Forwarder is a Virtual Machine running on the Virtual Network linked to th
 -	Private DNS Zone ( privatelink.blob.core.windows.net )
 ## Design
 The following diagram illustrates my testing environment. My main task is to make sure that IPSEC VPN clients and virtual machines from ProtectedB network will be able to connect to my storage account through the Fortigate. Since my storage account is available through the PrivateEndpoint my clients has to be able to resolve pcstorage.privatelink.blob.core.windows.net to the ip address of my Private Endpoints interface (172.16.137.6). To do this my Fortigate need to be configured as a DNS Proxy.
+![Alt text](https://github.com/iemcloudteam/azure_paas_services_inspection/blob/1ea3e0b276430e6b76baa053a057804e0a28908a/azure-private-endpoint-topology-kopia.png?raw=true "Design")
+## Pushing the traffic targeted to private endpoint through the Fortigate
