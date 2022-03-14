@@ -1,5 +1,5 @@
 # FortiGate - inspecting common PaaS services f.e Azure SQL, Storage Account
-This document describes how to inspect traffic to PaaS services (f.e. Azure SQL) by using FortiGate and Private Endpoint.
+This document describes how to inspect traffic to PaaS services (f.e. Azure SQL) by using FortiGate and [Private Endpoint](https://docs.microsoft.com/en-us/azure/storage/common/storage-private-endpoints).
 In this scenario FortiGate operates as a DNS Forwarder.
 A DNS Forwarder is a Virtual Machine running on the Virtual Network linked to the Private DNS Zone that can proxy DNS queries coming from other Virtual Network or from on-premises. The main reason of using this scenario was to provide the access from on-premise network connected to Fortigate via IPSEC VPN (client-to-site or site-to-site) to the Private Endpoint and the resource (f.e. Azure SQL or Storage Account) linked to that Private Endpoint. The second scenario was to forward and filter all the DNS queries by using Fortigate Virtual Appliance.
 ## Requirements
@@ -40,6 +40,8 @@ So, all the traffic targeted to the Private Endpoint interface will be routed th
 3.	Finally, because we want to forward DNS queries to the System DNS we need to check Network > DNS configuration. By default, Fortigate will be using FortiGuard DNS servers. We need to change it to internal Azure DNS server which is listening on 168.63.129.16.
 	
     <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/DNS4.png width="400"/>
+    
+ More information about using FortiGate as a DNS Proxy can be foud [here](https://docs.fortinet.com/document/fortigate/6.2.10/cookbook/121810/using-a-fortigate-as-a-dns-server)
 
 ## Changing DNS Server for IPSEC VPN client.
 1.	Go to VPN > IPSEC TUNNEL and edit your tunnel settings. Under DNS Server we can configure our port2 address:
