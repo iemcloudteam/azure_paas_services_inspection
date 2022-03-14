@@ -22,7 +22,7 @@ So, all the traffic targeted to the Private Endpoint interface will be routed th
 1.	Under the System > Feature Visibility you need to enable DNS Database feature.
 2.	Go to the Network > DNS Servers, under DNS Service on Interface we need to run DNS proxy on the specific network interface. 
 
-Becouse my task was to use Fortigate as a DNS Forwarer for my “ProtectedB” networtk and for my VPN tunnel I had to add two following entries.
+Because my task was to use Fortigate as a DNS Forwarer for my “ProtectedB” networtk and for my VPN tunnel I had to add two following entries.
 <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/DNS1.png width="400"/>
 
 First one is for my “ProtectedB” network that is connected to Fortigate via port2. I’m forwarding DNS queries to System DNS.
@@ -40,3 +40,14 @@ The second one is for my IPSECVPN interface
 
 <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/IPSEC.png width="400"/>
 
+2.	After connecting C2S tunnel we can check our DNS settings on the client by using nslookup. The first DNS server should be our Fortigates address. 
+
+<img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/nslookup.png width="400"/>
+
+3.	We can check if we are able to resolve our storage accounts DNS name:
+
+<img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/nslookup2.png width="400"/>
+
+To use Fortigate as a DNS server for the machines inside ProtectedB network we need to change DNS configurations on those machines. Here is an example for my Windows VM. I’m using Fortigates port2 interface IP address as a DNS server.
+
+<img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/azureDNScustom.png width="400"/>
