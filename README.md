@@ -44,18 +44,18 @@ So, all the traffic targeted to the Private Endpoint interface will be routed th
  More information about using FortiGate as a DNS Proxy can be foud [here](https://docs.fortinet.com/document/fortigate/6.2.10/cookbook/121810/using-a-fortigate-as-a-dns-server)
 
 ## Changing DNS Server for IPSEC VPN client.
-1.	Go to "VPN > IPSEC TUNNEL" and edit your tunnel settings. Under DNS Server we can configure our port2 address:
+1.	Go to "VPN > IPSEC TUNNEL" and edit tunnel settings. Under "DNS Server" we can configure our Port2 address:
 
 <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/IPSEC.png width="400"/>
 
-2.	After connecting C2S tunnel we can check our DNS settings on the client by using nslookup. The first DNS server should be our Fortigates address. 
+2.	After establishing Client-2-Site tunnel, we can check our DNS settings on the client by using nslookup command. The first DNS server should be FortiGates' address. 
 
 <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/nslookup.png width="400"/>
 
-3.	We can check if we are able to resolve our storage accounts DNS name:
+3.	We can check if we are able to resolve storage accounts' DNS name:
 
 <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/nslookup2.png width="400"/>
 
-To use Fortigate as a DNS server for the machines inside ProtectedB network we need to change DNS configurations on those machines. Here is an example for my Windows VM. I’m using Fortigates port2 interface IP address as a DNS server.
+To use FortiGate as DNS server for the machines inside ProtectedB subnet, we need to change DNS configurations on those VMs. Here is an example for Windows VM. I’m using FortiGate's Port2 interface IP address as DNS server.
 
 <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/azureDNScustom.png width="400"/>
