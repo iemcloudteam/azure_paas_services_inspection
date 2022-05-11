@@ -13,15 +13,16 @@ The following diagram illustrates my testing environment. My main task is to mak
 <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/f7bc1a1e5a3fc5e05e9e64718eefb21bdc44d654/images/topology.png width="1000"/>
 
 ## Pushing the traffic targeted to private endpoint through Fortigate
-When you are configuring Private Endpoint there is a routing entry that will be injected into your routing table that look as follow.
+When you are configuring Private Endpoint there is a routing entry that will be injected into your routing table that look as follow. You chan confirm that by checking "Effective routes" at the Azure Portal. 
 
 <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/routing.png width="800"/>
 
-So, all the traffic targeted to the Private Endpoint interface will be routed through the next hop type which is “InterfaceEndpoint”. Since our task is to push all that traffic through the Fortigate, we need to introduce additional routing entry that looks as follows:
+So, all the traffic targeted to the Private Endpoint interface will be routed through the next hop type which is “InterfaceEndpoint”. Since our task is to push all that traffic through the Fortigate, we need to introduce additional routing entry by editing "Route tables" settings at the Azure portal. We need to introduce new route that looks as follows:
 
 <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/routing2.png width="800"/>
 
 ## Using Fortigate as DNS Forwarder.
+To use Fortigate as a DNS Forwarder we need to edit following settings at your Fortigate:
 1.	Under "System > Feature Visibility", you need to enable "DNS Database" feature.
 2.	Go to "Network > DNS Servers", under "DNS Service on Interface" we need to run DNS proxy on the specific network interface. 
 
@@ -37,9 +38,9 @@ So, all the traffic targeted to the Private Endpoint interface will be routed th
 
     <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/DNS3.png width="400"/>
 
-3.	 Finally, because we want to forward DNS queries to the System DNS we need to check "Network > DNS configuration". By default, FortiGate will be using FortiGuard DNS servers. We need to change it to internal Azure DNS server which is listening on 168.63.129.16.
+3.	 Finally, because we want to forward DNS queries to the System DNS we need to check "Network > DNS configuration". By default, FortiGate will be using FortiGuard DNS servers. We need to change it to internal Azure DNS server which is listening on 168.63.129.16. To do this go to Network >> DNS and edit "Primary DNS server" setting.
 	
-    <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/DNS4.png width="400"/>
+    <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/main/images/DNS4.png width="400"/>
     
  More information about using FortiGate as a DNS Proxy can be foud [here](https://docs.fortinet.com/document/fortigate/6.2.10/cookbook/121810/using-a-fortigate-as-a-dns-server)
 
