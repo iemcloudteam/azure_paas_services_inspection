@@ -40,7 +40,7 @@ To use Fortigate as a DNS Forwarder we need to edit following settings at your F
 
 3.	 Finally, because we want to forward DNS queries to the System DNS we need to check "Network > DNS configuration". By default, FortiGate will be using FortiGuard DNS servers. We need to change it to internal Azure DNS server which is listening on 168.63.129.16. To do this go to Network >> DNS and edit "Primary DNS server" setting.
 	
-    <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/main/images/DNS4.png width="400"/>
+    <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/DNS4.png width="400"/>
     
  More information about using FortiGate as a DNS Proxy can be foud [here](https://docs.fortinet.com/document/fortigate/6.2.10/cookbook/121810/using-a-fortigate-as-a-dns-server)
 
