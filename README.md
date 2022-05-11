@@ -40,11 +40,12 @@ To use Fortigate as a DNS Forwarder we need to edit following settings at your F
 
 3.	 Finally, because we want to forward DNS queries to the System DNS we need to check "Network > DNS configuration". By default, FortiGate will be using FortiGuard DNS servers. We need to change it to internal Azure DNS server which is listening on 168.63.129.16. To do this go to Network >> DNS and edit "Primary DNS server" setting.
 	
-    <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/DNS4.png width="400"/>
+    <img src=https://raw.githubusercontent.com/iemcloudteam/azure_paas_services_inspection/main/images/DNS4.png width="400"/>
     
  More information about using FortiGate as a DNS Proxy can be foud [here](https://docs.fortinet.com/document/fortigate/6.2.10/cookbook/121810/using-a-fortigate-as-a-dns-server)
 
 ## Changing DNS Server for IPSEC VPN client.
+At your Fortigate do the following configuratio:
 1.	Go to "VPN > IPSEC TUNNEL" and edit tunnel settings. Under "DNS Server" we can configure our Port2 address:
 
 <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/IPSEC.png width="400"/>
@@ -57,6 +58,6 @@ To use Fortigate as a DNS Forwarder we need to edit following settings at your F
 
 <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/nslookup2.png width="400"/>
 
-To use FortiGate as DNS server for the machines inside ProtectedB subnet, we need to change DNS configurations on those VMs. Here is an example for Windows VM. I’m using FortiGate's Port2 interface IP address as DNS server.
+To use FortiGate as DNS server for the machines inside ProtectedB subnet, we need to change DNS configurations on those VMs. We need to do this at the Azure portal. Here is an example for Windows VM. I’m using FortiGate's Port2 interface IP address as DNS server.
 
 <img src=https://github.com/iemcloudteam/azure_paas_services_inspection/blob/8aa82bcd6ce72c1d66d9d851fdd277cff6d1c456/images/azureDNScustom.png width="400"/>
